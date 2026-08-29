@@ -65,6 +65,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--header-height);
+    overflow-x: hidden;
 }
 
 body {
@@ -75,6 +76,13 @@ body {
     overflow-x: hidden;
     position: relative;
     -webkit-font-smoothing: antialiased;
+    width: 100%;
+    min-width: 0;
+}
+
+img, video, svg {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Barra de Rolagem Customizada */
@@ -550,6 +558,14 @@ body {
     font-size: 0.88rem;
     line-height: 1.7;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.terminal-body pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .code-keyword { color: #f43f5e; font-weight: 600; }
@@ -1651,7 +1667,6 @@ body {
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     z-index: 99;
     transition: var(--transition);
-    position: fixed;
 }
 
 .floating-whatsapp:hover {
@@ -1683,6 +1698,8 @@ body {
 }
 
 /* ----------------- 14. MEDIA QUERIES (RESPONSIVIDADE) ----------------- */
+
+/* === TABLET (até 1024px) === */
 @media (max-width: 1024px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -1722,9 +1739,22 @@ body {
         margin-bottom: 20px;
     }
 
+    .sobre-info {
+        text-align: center;
+    }
+
+    .sobre-headline {
+        font-size: 1.5rem;
+    }
+
+    .sobre-actions {
+        justify-content: center;
+    }
+
     .service-cta-banner {
         flex-direction: column;
         text-align: center;
+        padding: 30px 24px;
     }
 
     .contato-grid {
@@ -1734,20 +1764,118 @@ body {
     .footer-container {
         grid-template-columns: 1fr 1fr;
     }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
 }
 
+/* === MOBILE (até 768px) === */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
     .section {
-        padding: 70px 0;
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 1.85rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .section-header {
+        margin-bottom: 36px;
+    }
+
+    /* Hero Mobile */
+    .hero {
+        min-height: auto;
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 40px;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        line-height: 1.2;
     }
 
     .typing-container {
-        font-size: 1.15rem;
+        font-size: 1rem;
         justify-content: center;
+        min-height: 32px;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    .hero-social {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hero-visual {
+        max-width: 100%;
+    }
+
+    /* Terminal Card Mobile */
+    .terminal-body {
+        padding: 16px;
+        font-size: 0.72rem;
+        line-height: 1.55;
+    }
+
+    .terminal-body pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .terminal-header {
+        padding: 10px 14px;
+    }
+
+    .terminal-title {
+        font-size: 0.72rem;
+    }
+
+    .terminal-footer {
+        padding: 8px 14px;
+    }
+
+    .status-indicator {
+        font-size: 0.68rem;
+    }
+
+    /* Badges flutuantes - esconder no mobile */
+    .badge-top, .badge-bottom {
+        display: none;
+    }
+
+    /* Glow ambiental - reduzir para evitar overflow */
+    .bg-glow {
+        width: 300px;
+        height: 300px;
+        opacity: 0.25;
     }
 
     /* Menu Mobile */
@@ -1774,6 +1902,7 @@ body {
         padding: 40px 24px;
         transition: right 0.4s ease;
         box-shadow: var(--shadow-lg);
+        z-index: 1001;
     }
 
     .nav-menu.open {
@@ -1787,6 +1916,10 @@ body {
         margin-bottom: 32px;
     }
 
+    .nav-link {
+        font-size: 1.1rem;
+    }
+
     .nav-cta-mobile {
         display: block;
         width: 100%;
@@ -1796,22 +1929,200 @@ body {
         width: 100%;
     }
 
+    /* Sobre Mobile */
+    .sobre-avatar-box {
+        width: 200px;
+        height: 200px;
+    }
+
+    .avatar-placeholder {
+        font-size: 3.5rem;
+    }
+
+    .experience-badge {
+        right: 10px;
+        bottom: -10px;
+        padding: 8px 14px;
+    }
+
+    .experience-badge i {
+        font-size: 1.4rem;
+    }
+
+    .experience-badge strong {
+        font-size: 0.82rem;
+    }
+
+    .experience-badge span {
+        font-size: 0.7rem;
+    }
+
     .highlights-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .highlight-item {
+        padding: 14px;
+    }
+
+    /* Serviços Mobile */
+    .servicos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 28px 20px;
+    }
+
+    .service-cta-banner {
+        padding: 24px 18px;
+        gap: 20px;
+    }
+
+    .cta-banner-content h3 {
+        font-size: 1.15rem;
+    }
+
+    .cta-banner-content p {
+        font-size: 0.88rem;
+    }
+
+    /* Projetos Mobile */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .project-img-wrapper {
+        height: 180px;
+    }
+
+    .preview-mockup i {
+        font-size: 2.5rem;
+    }
+
+    .preview-mockup span {
+        font-size: 0.82rem;
+    }
+
+    .project-body {
+        padding: 18px;
+    }
+
+    .project-title {
+        font-size: 1.1rem;
+    }
+
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+
+    /* GitHub Showcase Mobile */
+    .github-showcase-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+        gap: 20px;
+    }
+
+    .github-icon-large {
+        font-size: 2.5rem;
+    }
+
+    .github-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .github-info p {
+        font-size: 0.85rem;
+    }
+
+    /* Habilidades Mobile */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .skill-card {
+        padding: 16px 12px;
+    }
+
+    .skill-icon {
+        font-size: 2rem;
+    }
+
+    .skill-name {
+        font-size: 0.9rem;
+    }
+
+    .skill-level {
+        font-size: 0.68rem;
+    }
+
+    /* Diferenciais Mobile */
+    .diferenciais-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .diferencial-card {
+        padding: 24px 18px;
+    }
+
+    .diferencial-number {
+        font-size: 1.8rem;
+    }
+
+    .diferencial-card h3 {
+        font-size: 1.05rem;
+    }
+
+    /* Contato Mobile */
+    .contato-info h3 {
+        font-size: 1.35rem;
+    }
+
+    .contato-form-wrapper {
+        padding: 24px 18px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
     }
 
-    .github-showcase-box {
-        flex-direction: column;
-        text-align: center;
+    .contato-item {
+        padding: 14px 16px;
+    }
+
+    .contato-val {
+        font-size: 0.85rem;
+    }
+
+    /* Footer Mobile */
+    .footer {
+        padding: 50px 0 0;
     }
 
     .footer-container {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 32px;
+        padding-bottom: 32px;
+    }
+
+    .footer-brand {
+        text-align: center;
+    }
+
+    .footer-brand p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-social {
+        justify-content: center;
     }
 
     .footer-bottom-container {
@@ -1820,7 +2131,167 @@ body {
         text-align: center;
     }
 
-    .badge-top, .badge-bottom {
+    /* Botões flutuantes Mobile */
+    .floating-whatsapp {
+        bottom: 20px;
+        right: 18px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 76px;
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .whatsapp-tooltip {
         display: none;
+    }
+
+    /* Botões genéricos mobile */
+    .btn {
+        padding: 12px 22px;
+        font-size: 0.88rem;
+    }
+
+    .btn-submit {
+        padding: 14px 20px;
+    }
+}
+
+/* === MOBILE PEQUENO (até 480px) === */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 14px;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .hero-title {
+        font-size: 1.65rem;
+    }
+
+    .typing-container {
+        font-size: 0.88rem;
+    }
+
+    .hero-description {
+        font-size: 0.88rem;
+    }
+
+    .badge-status {
+        font-size: 0.72rem;
+        padding: 5px 10px;
+        gap: 6px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .section-badge {
+        font-size: 0.72rem;
+        padding: 4px 12px;
+    }
+
+    .terminal-body {
+        padding: 12px;
+        font-size: 0.62rem;
+        line-height: 1.5;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .logo-tag {
+        font-size: 0.78rem;
+    }
+
+    /* Skill cards em 2 colunas menores */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .skill-card {
+        padding: 14px 8px;
+    }
+
+    .skill-icon {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+    }
+
+    .skill-name {
+        font-size: 0.8rem;
+    }
+
+    .contato-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .form-header h4 {
+        font-size: 1.05rem;
+    }
+
+    .sobre-headline {
+        font-size: 1.25rem;
+    }
+
+    .sobre-info p {
+        font-size: 0.9rem;
+    }
+
+    .service-title {
+        font-size: 1.1rem;
+    }
+
+    .service-desc {
+        font-size: 0.85rem;
+    }
+
+    .service-features li {
+        font-size: 0.8rem;
+    }
+}
+
+/* === MOBILE MUITO PEQUENO (até 360px) === */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.45rem;
+    }
+
+    .typing-container {
+        font-size: 0.82rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .terminal-body {
+        font-size: 0.55rem;
+        padding: 10px;
+    }
+
+    .sobre-avatar-box {
+        width: 160px;
+        height: 160px;
+    }
+
+    .avatar-placeholder {
+        font-size: 2.8rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 }
