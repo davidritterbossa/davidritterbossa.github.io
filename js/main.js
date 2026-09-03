@@ -7,17 +7,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* -------------------------------------------------------------------------
-     * 0. INICIALIZAR AOS (Animate On Scroll)
+     * 0. INICIALIZAÇÃO
      * ----------------------------------------------------------------------- */
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 50,
-            delay: 50,
-        });
-    }
+    // AOS removido para garantir compatibilidade com todos os navegadores e adblockers.
 
     /* -------------------------------------------------------------------------
      * 1. CURSOR PERSONALIZADO & PARALLAX NO HERO
@@ -237,9 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 
-                // Reiniciar AOS para os itens visíveis
+                // Cards filtrados
                 setTimeout(() => {
-                    if (typeof AOS !== 'undefined') AOS.refresh();
+                    // Timeout apenas para aguardar a transição visual
                 }, 300);
             });
         });
