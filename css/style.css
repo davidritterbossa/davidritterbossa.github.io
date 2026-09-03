@@ -882,8 +882,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .experience-badge {
     position: absolute;
-    bottom: 0;
-    right: -10px;
+    top: 20px;
+    right: -40px;
+    z-index: 10;
     display: flex;
     align-items: center;
     gap: 10px;
